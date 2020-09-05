@@ -11,11 +11,10 @@ namespace Octoninja.Player.Controller {
 
         public PlayerData PlayerData = new PlayerData ();
         public PlayerAttackController AttackController { get; private set; }
-
-        public Rigidbody2D Rigidbody { get; private set; }
-        public Animator Animator { get; private set; }
-
         public bool CanMove { get; set; } = true;
+
+        private Rigidbody2D rb;
+        private Animator animator;
 
         #region Input Reading
 
@@ -40,8 +39,8 @@ namespace Octoninja.Player.Controller {
         public void Awake () => Initialize ();
         public void Initialize () {
 
-            Rigidbody = GetComponent<Rigidbody2D> ();
-            Animator = GetComponentInChildren<Animator> ();
+            rb = GetComponent<Rigidbody2D> ();
+            animator = GetComponentInChildren<Animator> ();
             AttackController = GetComponentInChildren<PlayerAttackController> ();
             groundMask = LayerMask.GetMask (GROUND_LAYER);
 
@@ -54,24 +53,29 @@ namespace Octoninja.Player.Controller {
 
         public void Update () {
 
-            if (!CanMove) return;
+            CanMove = !AttackController.IsRecovering && !AttackController.IsAttacking;
+            if (!CanMove) {
+
+                rb.velocity = new Vector2 (0, rb.velocity.y);
+                return;
+            }
 
             hit = Physics2D.Raycast (transform.position, Vector2.down, GROUND_RAY_DISTANCE, groundMask);
             grounded = hit.collider != null;
 
-            if (!AttackController.IsAttacking) {
+            if (InputValue > 0) lookingSide = 1;
+            else if (InputValue < 0) lookingSide = -1;
 
-                lookingSide = inputManager.GetMousePosition ().x > transform.position.x ? 1 : -1;
-                LookTo (lookingSide);
-                Rigidbody.velocity = Vector2.right * InputValue * PlayerData.GetCurrentSpeed (lookingSide, InputValue) + Vector2.up * Rigidbody.velocity.y;
-            }
+            LookTo (lookingSide);
+            rb.velocity = Vector2.right * InputValue * PlayerData.GetCurrentSpeed (lookingSide, InputValue) + Vector2.up * rb.velocity.y;
+
         }
 
         public void PushPlayer (Vector2 force, float duration) {
 
             CanMove = false;
-            Rigidbody.velocity = Vector2.zero;
-            Rigidbody.AddForce (Vector2.right * lookingSide * force);
+            rb.velocity = Vector2.zero;
+            rb.AddForce (Vector2.right * lookingSide * force);
             this.RunDelayed (duration, () => CanMove = true);
         }
 
@@ -84,8 +88,8 @@ namespace Octoninja.Player.Controller {
 
             if (!grounded) return;
 
-            Rigidbody.velocity = new Vector2 (Rigidbody.velocity.x, 0);
-            Rigidbody.AddForce (Vector2.up * PlayerData.JumpForce);
+            rb.velocity = new Vector2 (rb.velocity.x, 0);
+            rb.AddForce (Vector2.up * PlayerData.JumpForce);
         }
     }
 }

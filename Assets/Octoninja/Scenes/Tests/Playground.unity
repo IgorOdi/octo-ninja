@@ -446,9 +446,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 939328464}
-  - component: {fileID: 939328463}
-  - component: {fileID: 939328462}
   - component: {fileID: 939328461}
+  - component: {fileID: 939328462}
+  - component: {fileID: 939328463}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Damageable
@@ -494,7 +494,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

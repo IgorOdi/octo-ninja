@@ -10,7 +10,8 @@ namespace Octoninja.Enemies.Controller {
 
             GetComponentInChildren<EnemyVisualController> ().Shake ();
             int side = damager.WorldPoint.x > transform.position.x ? -1 : 1;
-            GetComponent<Rigidbody2D> ().AddForce (Vector2.right * side * damager.ImpactForce);
+            var rb = GetComponent<Rigidbody2D> ();
+            rb.AddForce (Vector2.one * side * rb.mass * damager.ImpactForce * 1.25f);
         }
     }
 }

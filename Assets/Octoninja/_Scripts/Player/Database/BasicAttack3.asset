@@ -16,7 +16,7 @@ MonoBehaviour:
     Damage: 0
     Size: {x: 2, y: 2}
     Offset: {x: 1.25, y: 0.75}
-    ImpactForce: {x: 60, y: 12}
+    ImpactForce: {x: 150, y: 12}
   Delay: 0
   Duration: 0.25
   RecoveryTime: 0.5

@@ -57,10 +57,10 @@ namespace Octoninja.Combat.Controller {
 
             if (success) {
 
-                Debug.Log ("Hitou com sucesso");
+                //Debug.Log ("Hitou com sucesso");
             } else {
 
-                Debug.Log ("Hit falhou");
+                //Debug.Log ("Hit falhou");
             }
         }
 
