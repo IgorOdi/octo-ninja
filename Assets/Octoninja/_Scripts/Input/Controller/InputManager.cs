@@ -55,6 +55,16 @@ namespace Octoninja.Input {
 
         public void ClearKeys () {
 
+            foreach (InputKey i in registeredKeys.Values) {
+
+                i.OnKeyDown = null;
+                i.OnKeyHold = null;
+                i.OnKeyUp = null;
+            }
+        }
+
+        public void ClearRegisteredKeys () {
+
             registeredKeys.Clear ();
         }
 

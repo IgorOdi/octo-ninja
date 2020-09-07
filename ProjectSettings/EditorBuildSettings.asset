@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Octoninja/Scenes/Tests/Playground.unity
+    guid: 9362f0a0c2c8ac9408b63b06fa95f42f
+  - enabled: 1
+    path: Assets/Octoninja/Scenes/Tests/Playground2.unity
+    guid: a84c287a04599af41a87de7a7205a13f
   m_configObjects: {}

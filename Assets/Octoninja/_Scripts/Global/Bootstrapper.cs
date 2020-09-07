@@ -17,6 +17,15 @@ namespace Octoninja.Global {
             inputManager.RegisterKey (OctoKey.PAUSE, KeyCode.Escape);
         }
 
+#if UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod (RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void OnStartFirstScene () {
+
+            var sceneManager = Instantiate<SceneManager> ();
+            sceneManager.Initialize ();
+        }
+#endif
+
         private static T Instantiate<T> () where T : Component {
 
             GameObject g = new GameObject (typeof (T).Name);
