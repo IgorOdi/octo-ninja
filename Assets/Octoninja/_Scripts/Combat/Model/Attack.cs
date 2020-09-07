@@ -14,7 +14,7 @@ namespace Octoninja.Combat.Model {
         public float RecoveryTime;
 
         [Header ("Side Effects")]
-        public Vector2 PushForce;
+        //public Vector2 PushForce;
         public bool ShakeScreen;
         public float ScreenShakeIntensity;
 

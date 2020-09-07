@@ -16,6 +16,8 @@ namespace Octoninja.Combat.Controller {
         protected DamagerController DamagerController;
         protected int currentAtkIndex;
 
+        protected Coroutine recoveryCoroutine;
+
         public void Initialize () {
 
             DamagerController.DisableCollider ();
@@ -23,7 +25,7 @@ namespace Octoninja.Combat.Controller {
 
         protected virtual bool DoAttack (Attack attack) {
 
-            if (IsRecovering || DamagerController.IsColliderActive) return false;
+            if (IsAttacking || IsRecovering) return false;
 
             this.RunDelayed (attack.Delay, () => {
 
@@ -32,7 +34,8 @@ namespace Octoninja.Combat.Controller {
 
                 if (attack.RecoveryTime > 0) {
                     IsRecovering = true;
-                    this.RunDelayed (attack.RecoveryTime, () => IsRecovering = false);
+                    if (recoveryCoroutine != null) StopCoroutine (recoveryCoroutine);
+                    recoveryCoroutine = this.RunDelayed (attack.RecoveryTime, () => IsRecovering = false);
                 }
             });
 
@@ -41,7 +44,7 @@ namespace Octoninja.Combat.Controller {
 
         protected virtual bool NextComboAttack (int comboIndex) {
 
-            if (IsRecovering || DamagerController.IsColliderActive) return false;
+            if (IsAttacking || IsRecovering) return false;
 
             DoAttack (GetCurrentAttackInfo (comboIndex));
 

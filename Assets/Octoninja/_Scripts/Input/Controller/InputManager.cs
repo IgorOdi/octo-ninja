@@ -43,6 +43,11 @@ namespace Octoninja.Input {
             return UnityEngine.Input.GetAxis (MOUSE_AXIS[(int) axis]);
         }
 
+        public Vector2 GetMouseDirection (Vector2 rootPos) {
+
+            return GetMousePosition () - rootPos;
+        }
+
         public Vector2 GetMousePosition () {
 
             return Camera.main.ScreenToWorldPoint (UnityEngine.Input.mousePosition);

@@ -7,9 +7,9 @@ namespace Octoninja.Utils
 
     public static class CoroutineUtils {
 
-        public static void RunDelayed (this MonoBehaviour mono, float time, Action callback) {
+        public static Coroutine RunDelayed (this MonoBehaviour mono, float time, Action callback) {
 
-            mono.StartCoroutine (WaitFor (time, callback));
+            return mono.StartCoroutine (WaitFor (time, callback));
         }
 
         private static IEnumerator WaitFor (float time, Action callback) {

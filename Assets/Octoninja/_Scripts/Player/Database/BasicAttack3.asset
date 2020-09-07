@@ -16,11 +16,10 @@ MonoBehaviour:
     Damage: 0
     Size: {x: 2, y: 2}
     Offset: {x: 1.25, y: 0.75}
-    ImpactForce: {x: 150, y: 12}
+    ImpactForce: {x: 200, y: 12}
   Delay: 0
   Duration: 0.25
-  RecoveryTime: 0.5
-  PushForce: {x: 20, y: 0}
+  RecoveryTime: 0.4
   ShakeScreen: 0
   ScreenShakeIntensity: 0
   AnimationName: 

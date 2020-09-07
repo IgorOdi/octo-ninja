@@ -24,7 +24,7 @@ namespace Octoninja.Player.Controller {
             if (!base.NextComboAttack (comboIndex)) return false;
 
             var atk = GetCurrentAttackInfo (comboIndex);
-            controller.PushPlayer (atk.PushForce, atk.Duration);
+            //controller.PushPlayer (atk.PushForce, atk.Duration);
             return true;
         }
     }

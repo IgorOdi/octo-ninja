@@ -1,4 +1,5 @@
-﻿using Octoninja.Global;
+﻿using DG.Tweening;
+using Octoninja.Global;
 using Octoninja.Input;
 using Octoninja.Player.Model;
 using Octoninja.Utils;
@@ -11,7 +12,8 @@ namespace Octoninja.Player.Controller {
 
         public PlayerData PlayerData = new PlayerData ();
         public PlayerAttackController AttackController { get; private set; }
-        public bool CanMove { get; set; } = true;
+        public TentacleController TentacleController { get; private set; }
+        public bool CanMove { get; private set; } = true;
 
         private Rigidbody2D rb;
         private Animator animator;
@@ -42,21 +44,26 @@ namespace Octoninja.Player.Controller {
             rb = GetComponent<Rigidbody2D> ();
             animator = GetComponentInChildren<Animator> ();
             AttackController = GetComponentInChildren<PlayerAttackController> ();
+            TentacleController = GetComponentInChildren<TentacleController> ();
             groundMask = LayerMask.GetMask (GROUND_LAYER);
 
             inputManager = SingletonManager.GetSingleton<InputManager> ();
             jumpKey = inputManager.GetKey (OctoKey.JUMP);
+            tentacleKey = inputManager.GetKey (OctoKey.TENTACLE);
             jumpKey.OnKeyDown += Jump;
+            tentacleKey.OnKeyDown += () => TentacleController.ThrowTentacle ();
 
             AttackController.Initialize (this, inputManager);
+            TentacleController.Initialize (this, inputManager);
         }
 
         public void Update () {
 
-            CanMove = !AttackController.IsRecovering && !AttackController.IsAttacking;
-            if (!CanMove) {
+            rb.gravityScale = AttackController.IsRecovering ? 0 : 1;
+            //if (!CanMove) return;
+            if (AttackController.IsRecovering) {
 
-                rb.velocity = new Vector2 (0, rb.velocity.y);
+                rb.velocity = Vector2.zero;
                 return;
             }
 
@@ -68,7 +75,6 @@ namespace Octoninja.Player.Controller {
 
             LookTo (lookingSide);
             rb.velocity = Vector2.right * InputValue * PlayerData.GetCurrentSpeed (lookingSide, InputValue) + Vector2.up * rb.velocity.y;
-
         }
 
         public void PushPlayer (Vector2 force, float duration) {
@@ -79,6 +85,16 @@ namespace Octoninja.Player.Controller {
             this.RunDelayed (duration, () => CanMove = true);
         }
 
+        public void PullToPosition (Vector2 position, float pullSpeed) {
+
+            CanMove = false;
+            float distance = Vector2.Distance (transform.position, position);
+            float duration = distance / pullSpeed;
+            transform.DOMove (position - Vector2.up * 0.75f, duration)
+                .SetEase (Ease.OutCubic)
+                .OnComplete (() => CanMove = true);
+        }
+
         public void LookTo (int side) {
 
             transform.localScale = new Vector3 (side, 1, 1);
@@ -86,7 +102,7 @@ namespace Octoninja.Player.Controller {
 
         private void Jump () {
 
-            if (!grounded) return;
+            if (!grounded || !CanMove || AttackController.IsRecovering) return;
 
             rb.velocity = new Vector2 (rb.velocity.x, 0);
             rb.AddForce (Vector2.up * PlayerData.JumpForce);
