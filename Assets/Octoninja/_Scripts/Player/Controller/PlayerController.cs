@@ -60,7 +60,7 @@ namespace Octoninja.Player.Controller {
         public void Update () {
 
             rb.gravityScale = AttackController.IsRecovering ? 0 : 1;
-            //if (!CanMove) return;
+            if (!CanMove) return;
             if (AttackController.IsRecovering) {
 
                 rb.velocity = Vector2.zero;
@@ -90,9 +90,11 @@ namespace Octoninja.Player.Controller {
             CanMove = false;
             float distance = Vector2.Distance (transform.position, position);
             float duration = distance / pullSpeed;
-            transform.DOMove (position - Vector2.up * 0.75f, duration)
+            transform.DOMove (position - Vector2.up, duration)
                 .SetEase (Ease.OutCubic)
                 .OnComplete (() => CanMove = true);
+
+            //this.RunDelayed (pullSpeed / 2, () => CanMove = true);
         }
 
         public void LookTo (int side) {

@@ -17,9 +17,10 @@ MonoBehaviour:
     Size: {x: 2, y: 2}
     Offset: {x: 1.25, y: 0.75}
     ImpactForce: {x: 200, y: 12}
+    ShakeScreen: 1
+    ScreenShakeDuration: 0.1
+    ScreenShakeIntensity: 0.1
   Delay: 0
   Duration: 0.25
   RecoveryTime: 0.4
-  ShakeScreen: 0
-  ScreenShakeIntensity: 0
   AnimationName: 

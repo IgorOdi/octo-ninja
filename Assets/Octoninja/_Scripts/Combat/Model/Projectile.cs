@@ -6,5 +6,7 @@ namespace Octoninja.Combat.Controller {
     public class Projectile {
 
         public float StartingSpeed;
+        public bool DestroyAlongTime;
+        public float DestroyTime;
     }
 }

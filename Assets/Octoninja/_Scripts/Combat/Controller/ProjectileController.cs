@@ -14,8 +14,11 @@ namespace Octoninja.Combat.Controller {
         public virtual void Initialize () {
 
             CurrentSpeed = Projectile.StartingSpeed;
-            shouldBeMoving = true;
             rb = GetComponent<Rigidbody2D> ();
+            shouldBeMoving = true;
+
+            if (Projectile.DestroyAlongTime)
+                Destroy (gameObject, Projectile.DestroyTime);
         }
 
         protected virtual void Update () {

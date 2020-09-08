@@ -13,6 +13,10 @@ namespace Octoninja.Combat.Model {
         public Vector2 Offset;
         public Vector2 ImpactForce;
 
+        public bool ShakeScreen;
+        public float ScreenShakeDuration;
+        public float ScreenShakeIntensity;
+
         public Vector2 WorldPoint { get; set; }
     }
 }

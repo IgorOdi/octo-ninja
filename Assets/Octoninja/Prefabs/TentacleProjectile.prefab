@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projectile:
     StartingSpeed: 20
+    DestroyAlongTime: 1
+    DestroyTime: 1
 --- !u!61 &-2502725750289205434
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Octoninja.Cameras;
+using Octoninja.Utils;
+using UnityEngine;
 
 namespace Octoninja.Global.Scenes {
 
@@ -7,6 +9,8 @@ namespace Octoninja.Global.Scenes {
         public override void OnSceneLoad () {
 
             Debug.Log ("Carregou cena Playground");
+            var camManager = InstantiateUtils.Instantiate<CameraManager> ();
+            camManager.Initialize ();
         }
 
         void Update () {

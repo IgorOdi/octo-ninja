@@ -1,6 +1,7 @@
 ﻿using System;
 using Octoninja.Combat.Interface;
 using Octoninja.Combat.Model;
+using Octoninja.Global;
 using Octoninja.Utils;
 using UnityEngine;
 
@@ -46,6 +47,11 @@ namespace Octoninja.Combat.Controller {
 
             var damageable = other.GetComponentInChildren<IDamageable> ();
             damageable.CauseDamage (damager);
+
+            if (damager.ShakeScreen)
+                SingletonManager.GetSingleton<Cameras.CameraManager> ().ShakeCurrentCamera (damager.ScreenShakeDuration,
+                    damager.ScreenShakeIntensity, true);
+
             onHit?.Invoke (true);
         }
 

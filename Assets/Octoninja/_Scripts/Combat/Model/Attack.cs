@@ -15,8 +15,6 @@ namespace Octoninja.Combat.Model {
 
         [Header ("Side Effects")]
         //public Vector2 PushForce;
-        public bool ShakeScreen;
-        public float ScreenShakeIntensity;
 
         public string AnimationName;
     }

@@ -28,9 +28,8 @@ namespace Octoninja.Global {
 
         private static T Instantiate<T> () where T : Component {
 
-            GameObject g = new GameObject (typeof (T).Name);
-            var component = g.AddComponent<T> ();
-            DontDestroyOnLoad (g);
+            var component = Utils.InstantiateUtils.Instantiate<T> ();
+            DontDestroyOnLoad (component);
             return component;
         }
     }

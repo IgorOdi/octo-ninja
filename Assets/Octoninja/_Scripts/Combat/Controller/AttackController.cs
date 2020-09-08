@@ -18,6 +18,7 @@ namespace Octoninja.Combat.Controller {
 
         protected Coroutine recoveryCoroutine;
 
+        void Awake () => Initialize ();
         public void Initialize () {
 
             DamagerController.DisableCollider ();
