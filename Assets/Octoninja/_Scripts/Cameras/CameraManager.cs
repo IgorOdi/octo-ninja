@@ -22,16 +22,21 @@ namespace Octoninja.Cameras {
 
             if (CurrentCamera != null)
                 CurrentCamera.gameObject.SetActive (false);
-                
+
             cam.gameObject.SetActive (true);
 
             CurrentCamera = cam;
             CinemachineBrain.m_DefaultBlend.m_Time = blendTime;
         }
 
-        public void ShakeCurrentCamera (float duration, float intensity, bool overrideCurrentShake = true) {
+        public void ShakeCurrentCamera (float duration, float intensity, float frequency, bool overrideCurrentShake = true) {
 
-            CurrentCamera.Shake (duration, intensity, overrideCurrentShake);
+            CurrentCamera.Shake (duration, intensity, frequency, overrideCurrentShake);
+        }
+
+        private void OnDestroy () {
+
+            this.UnsubscribeSingleton ();
         }
     }
 }

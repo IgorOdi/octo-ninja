@@ -16,7 +16,7 @@ namespace Octoninja.Cameras {
             ImpulseSource = GetComponentInChildren<CinemachineImpulseSource> ();
         }
 
-        public void Shake (float duration, float intensity, bool overrideCurrentShake = true) {
+        public void Shake (float duration, float intensity, float frequency, bool overrideCurrentShake = true) {
 
             if (IsShaking && !overrideCurrentShake) {
 
@@ -26,6 +26,7 @@ namespace Octoninja.Cameras {
 
             IsShaking = true;
             ImpulseSource.m_ImpulseDefinition.m_AmplitudeGain = intensity;
+            ImpulseSource.m_ImpulseDefinition.m_FrequencyGain = frequency;
             ImpulseSource.m_ImpulseDefinition.m_TimeEnvelope.m_AttackTime = duration / 2;
             ImpulseSource.m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime = duration / 2;
             ImpulseSource.GenerateImpulse ();

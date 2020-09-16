@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Octoninja.Combat.Model;
 using Octoninja.Utils;
 using UnityEngine;
@@ -31,7 +30,7 @@ namespace Octoninja.Combat.Controller {
             this.RunDelayed (attack.Delay, () => {
 
                 //controller.Animator.Play (atkInfo.AnimationName);
-                DamagerController.ActivateCollider (attack.Damager, attack.Duration, (success) => OnHit (success));
+                DamagerController.ActivateCollider (attack.Damager, attack.Duration, (success, damager) => OnHit (success, damager));
 
                 if (attack.RecoveryTime > 0) {
                     IsRecovering = true;
@@ -57,14 +56,16 @@ namespace Octoninja.Combat.Controller {
             return true;
         }
 
-        protected virtual void OnHit (bool success) {
+        protected virtual void OnHit (bool success, Damager damager) {
 
             if (success) {
 
-                //Debug.Log ("Hitou com sucesso");
+                if (damager.ShakeScreen)
+                    Global.SingletonManager.GetSingleton<Cameras.CameraManager> ().ShakeCurrentCamera (damager.ScreenShakeDuration,
+                        damager.ScreenShakeIntensity, damager.ScreenShakeIntensity, true);
             } else {
 
-                //Debug.Log ("Hit falhou");
+                Debug.Log ("Hit falhou");
             }
         }
 

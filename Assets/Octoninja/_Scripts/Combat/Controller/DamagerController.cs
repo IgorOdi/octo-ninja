@@ -11,18 +11,18 @@ namespace Octoninja.Combat.Controller {
 
         public bool IsColliderActive { get { return collisionArea.enabled; } }
         protected Damager damager;
-        protected Action<bool> onHit;
+        protected Action<bool, Damager> onHit;
 
         private BoxCollider2D collisionArea;
         private void Awake () => collisionArea = GetComponentInChildren<BoxCollider2D> ();
 
-        public virtual void ActivateCollider (Damager damager, float duration, Action<bool> hit) {
+        public virtual void ActivateCollider (Damager damager, float duration, Action<bool, Damager> hit) {
 
             ActivateCollider (damager, hit);
             this.RunDelayed (duration, DisableCollider);
         }
 
-        public virtual void ActivateCollider (Damager damager, Action<bool> hit) {
+        public virtual void ActivateCollider (Damager damager, Action<bool, Damager> hit) {
 
             onHit = hit;
             this.damager = damager;
@@ -48,11 +48,7 @@ namespace Octoninja.Combat.Controller {
             var damageable = other.GetComponentInChildren<IDamageable> ();
             damageable.CauseDamage (damager);
 
-            if (damager.ShakeScreen)
-                SingletonManager.GetSingleton<Cameras.CameraManager> ().ShakeCurrentCamera (damager.ScreenShakeDuration,
-                    damager.ScreenShakeIntensity, true);
-
-            onHit?.Invoke (true);
+            onHit?.Invoke (true, damager);
         }
 
         private void OnTriggerEnter2D (Collider2D other) => OnDamageCollision (other);

@@ -5,7 +5,6 @@ namespace Octoninja.Combat.Model {
     [CreateAssetMenu (menuName = "Player/Attack", fileName = "New Player Attack")]
     public class Attack : ScriptableObject {
 
-        [Header ("Damage")]
         public Damager Damager;
 
         [Header ("Timing")]

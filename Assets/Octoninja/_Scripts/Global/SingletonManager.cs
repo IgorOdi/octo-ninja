@@ -14,7 +14,7 @@ namespace Octoninja.Global {
             if (singletonList.ContainsKey (singletonType)) {
 
                 if (!allowOverride) {
-                    throw new System.Exception ($"Class {singletonType} alread registered");
+                    throw new System.Exception ($"Class {singletonType} already registered");
                 } else {
                     singletonList[singletonType] = singleton;
                     Debug.Log ($"Subscribed {singleton} as a {singletonType} singleton overriding an old object");
