@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06ce578219a7884dbf4ee83c2b1a04b, type: 3}
   m_Name: BasicAttack3
   m_EditorClassIdentifier: 
+  AttackName: BasicAttack3
+  AttackType: 0
+  projectile: {fileID: 0}
   Damager:
     Damage: 0
     Size: {x: 2, y: 2}
     Offset: {x: 1.25, y: 0.75}
-    ImpactForce: {x: 200, y: 12}
+    ImpactForce: {x: 400, y: 12}
     StaggerDuration: 0.2
     ShakeScreen: 1
     ScreenShakeDuration: 0.1

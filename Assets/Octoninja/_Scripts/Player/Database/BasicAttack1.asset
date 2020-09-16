@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06ce578219a7884dbf4ee83c2b1a04b, type: 3}
   m_Name: BasicAttack1
   m_EditorClassIdentifier: 
+  AttackName: BasicAttack2
+  AttackType: 0
+  projectile: {fileID: 0}
   Damager:
     Damage: 0
     Size: {x: 2, y: 2}
@@ -21,6 +24,7 @@ MonoBehaviour:
     ShakeScreen: 1
     ScreenShakeDuration: 0.1
     ScreenShakeIntensity: 0.1
+    ScreenShakeFrequency: 4
   Delay: 0
   Duration: 0.125
   RecoveryTime: 0.2

@@ -2,8 +2,19 @@
 
 namespace Octoninja.Combat.Model {
 
+    public enum AttackType {
+
+        MELEE,
+        RANGED,
+    }
+
     [CreateAssetMenu (menuName = "Player/Attack", fileName = "New Player Attack")]
     public class Attack : ScriptableObject {
+
+        public string AttackName;
+
+        public AttackType AttackType;
+        public GameObject projectile;
 
         public Damager Damager;
 

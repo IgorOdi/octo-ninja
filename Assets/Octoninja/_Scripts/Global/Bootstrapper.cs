@@ -1,4 +1,5 @@
 ﻿using Octoninja.Input;
+using Octoninja.Pooling;
 using UnityEngine;
 
 namespace Octoninja.Global {
@@ -23,6 +24,9 @@ namespace Octoninja.Global {
 
             var sceneManager = Instantiate<SceneManager> ();
             sceneManager.Initialize ();
+
+            var poolManager = Instantiate<PoolManager> ();
+            poolManager.Initialize ();
         }
 #endif
 

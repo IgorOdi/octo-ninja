@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Octoninja.Combat.Model;
+using Octoninja.Global;
+using Octoninja.Pooling;
 using Octoninja.Utils;
 using UnityEngine;
 
@@ -13,14 +15,21 @@ namespace Octoninja.Combat.Controller {
 
         [SerializeField]
         protected DamagerController DamagerController;
+        protected Pool attackPool;
         protected int currentAtkIndex;
 
         protected Coroutine recoveryCoroutine;
 
-        void Awake () => Initialize ();
+        void Start () => Initialize ();
         public void Initialize () {
 
             DamagerController.DisableCollider ();
+            return;
+            for (int i = 0; i < Combos[0].AttackList.Count; i++) {
+
+                attackPool = SingletonManager.GetSingleton<PoolManager> ().CreatePool (Combos[0].AttackList[i].AttackName,
+                    Combos[0].AttackList[i].projectile, 5);
+            }
         }
 
         protected virtual bool DoAttack (Attack attack) {
@@ -30,7 +39,10 @@ namespace Octoninja.Combat.Controller {
             this.RunDelayed (attack.Delay, () => {
 
                 //controller.Animator.Play (atkInfo.AnimationName);
-                DamagerController.ActivateCollider (attack.Damager, attack.Duration, (success, damager) => OnHit (success, damager));
+                if (attack.AttackType.Equals (AttackType.MELEE))
+                    DamagerController.ActivateCollider (attack.Damager, attack.Duration, (success, damager) => OnHit (success, damager));
+                else
+                    attackPool.Spawn (DamagerController.transform.position, DamagerController.transform.eulerAngles);
 
                 if (attack.RecoveryTime > 0) {
                     IsRecovering = true;

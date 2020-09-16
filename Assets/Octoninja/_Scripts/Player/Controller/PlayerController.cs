@@ -38,7 +38,7 @@ namespace Octoninja.Player.Controller {
 
         #endregion
 
-        public void Awake () => Initialize ();
+        public void Start () => Initialize ();
         public void Initialize () {
 
             rb = GetComponent<Rigidbody2D> ();
