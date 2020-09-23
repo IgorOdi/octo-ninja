@@ -4,7 +4,6 @@
 		<property name="name">
 			<value>hachimaru_walk</value>
 		</property>
-		<property name="note" />
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
@@ -34,6 +33,9 @@
 		</relationship>
 		<relationship name="tags">
 			<destination>{e48f77e4-7d9e-496a-a4a6-60c3821ae68b}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{4f4b5c4a-a9d9-4691-8019-f62366c93e60}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{29a8648f-5f58-44f0-ab58-b6d77c5f9806}">

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{960e610c-ec48-4f46-a263-0fa52265dc85}">
+		<property name="assetPath">
+			<value>ENEMIES/Hit Sword Layer 2 ed.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.34294784580498866</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{098c5035-41bb-4b56-b609-6fbcad1709cb}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EncodableAsset" id="{3f1fd2b8-b747-41b7-9e97-491cf557b48e}">
+		<property name="assetPath">
+			<value>PLAYER/HACHIMARU/Jump/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{098c5035-41bb-4b56-b609-6fbcad1709cb}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{857178f5-af03-4c38-a7c2-71eb93183c50}">
+		<property name="assetPath">
+			<value>PLAYER/HACHIMARU/Tentacle/Watery_Layer_D ed.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.65208616780045348</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{098c5035-41bb-4b56-b609-6fbcad1709cb}</destination>
+		</relationship>
+	</object>
+</objects>
