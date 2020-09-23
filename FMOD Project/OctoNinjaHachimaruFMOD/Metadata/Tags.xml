@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.00.00">
-	<object class="MasterTagFolder" id="{8c48c5ce-776c-43aa-b02d-ffa70059e4a5}">
+	<object class="MasterTagFolder" id="{78989aba-ae96-40d5-a2d9-861080d5f9bc}">
 		<property name="name">
 			<value>Master</value>
+		</property>
+		<relationship name="items">
+			<destination>{e48f77e4-7d9e-496a-a4a6-60c3821ae68b}</destination>
+		</relationship>
+	</object>
+	<object class="Tag" id="{e48f77e4-7d9e-496a-a4a6-60c3821ae68b}">
+		<property name="name">
+			<value>hachimaru</value>
 		</property>
 	</object>
 </objects>

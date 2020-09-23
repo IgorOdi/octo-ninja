@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EventFolder" id="{f2526ff9-0149-458b-a26c-9f8b4547951d}">
+		<property name="name">
+			<value>HACHIMARU</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1d529eb3-7423-4041-981a-2e6da43814fa}</destination>
+		</relationship>
+	</object>
+</objects>
